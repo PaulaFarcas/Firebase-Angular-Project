@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fir-project-e0c1c": {
+      "hosting": {
+        "angular-project": [
+          "fir-project-e0c1c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fir-project-e0c1c"
+  }
+}
