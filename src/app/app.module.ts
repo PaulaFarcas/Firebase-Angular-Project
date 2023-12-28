@@ -13,6 +13,12 @@ import { FormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HomeComponent } from './home/home.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { JoinBattleComponent } from './join-battle/join-battle.component';
+import { ContestantActionsComponent } from './contestant-actions/contestant-actions.component';
+import { VoterActionsComponent } from './voter-actions/voter-actions.component';
+import { StartGameComponent } from './start-game/start-game.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +27,12 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
     RegisterComponent,
     HomeComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    UserProfileComponent,
+    JoinBattleComponent,
+    ContestantActionsComponent,
+    VoterActionsComponent,
+    StartGameComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +41,8 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp({"projectId":"fir-project-e0c1c","appId":"1:464348841183:web:37adc0e83390886258556a","storageBucket":"fir-project-e0c1c.appspot.com","apiKey":"AIzaSyDSyoh6yzqLx2qJmzicz1bkf7iC7FF2NF4","authDomain":"fir-project-e0c1c.firebaseapp.com","messagingSenderId":"464348841183","measurementId":"G-14D5H5JD42"})),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
