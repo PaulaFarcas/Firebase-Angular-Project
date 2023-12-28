@@ -20,6 +20,7 @@ import { ContestantActionsComponent } from './contestant-actions/contestant-acti
 import { VoterActionsComponent } from './voter-actions/voter-actions.component';
 import { StartGameComponent } from './start-game/start-game.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

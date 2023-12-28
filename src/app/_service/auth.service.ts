@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider} from '@angular/fire/auth'
+import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, User} from '@angular/fire/auth'
 import { Router } from '@angular/router';
+import { Observable, map, of, switchMap } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+ 
   constructor(private fireauth : AngularFireAuth, private router : Router) { }
-
+  
   // login method
   login(email : string, password : string) {
     this.fireauth.signInWithEmailAndPassword(email,password).then( res => {
@@ -17,6 +20,7 @@ export class AuthService {
 
         if(res.user?.emailVerified == true) {
           this.router.navigate(['home']);
+
         } else {
           this.router.navigate(['/verify-email']);
         }
@@ -25,6 +29,11 @@ export class AuthService {
         alert(err.message);
         this.router.navigate(['/login']);
     })
+  }
+  getCurrentUserEmail(): Observable<string | null> {
+    return this.fireauth.authState.pipe(
+      map(user => user?.email || null)
+    );
   }
 
   // register method
@@ -79,5 +88,7 @@ export class AuthService {
       alert(err.message);
     })
   }
+
+  
 
 }

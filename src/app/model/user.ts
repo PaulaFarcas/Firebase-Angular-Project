@@ -3,8 +3,7 @@ export interface User {
     first_name : string,
     last_name : string,
     email : string,
-    mobile : string,
-    participant: [],  //1- canta 2-voteaza
-    music_style:[], //pop,rock,,, if 
+    //participant: [],  //1- canta 2-voteaza
+    music_style:string, //pop,rock,,, if 
 
 }

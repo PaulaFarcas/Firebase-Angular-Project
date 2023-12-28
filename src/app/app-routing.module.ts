@@ -23,7 +23,8 @@ const routes: Routes = [
   { path: 'contestant-actions', component: ContestantActionsComponent },
   { path: 'voter-actions', component: VoterActionsComponent },
   { path: 'start-game', component: StartGameComponent },
-  {path:'user-profile', component:UserProfileComponent}
+  {path:'user-profile', component:UserProfileComponent},
+  {path:'voter-actions',component:VoterActionsComponent}
   
 ];
 
