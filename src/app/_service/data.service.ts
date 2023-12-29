@@ -27,8 +27,15 @@ export class DataService {
   }
 
   updateUserProfile(userId: string, userProfile: any): Promise<void> {
-    return this.afs.collection('users').doc(userId).set(userProfile);
+    return this.afs.collection('users').doc(userId).update(userProfile)
+      .then(() => {
+        console.log('Profile updated successfully');
+      })
+      .catch((error) => {
+        console.error('Error updating profile:', error);
+      });
   }
+  
 
   getUserProfile(userId: string): any {
     return this.afs.collection('users').doc(userId).valueChanges();

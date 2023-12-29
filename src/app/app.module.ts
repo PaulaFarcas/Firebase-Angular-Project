@@ -22,7 +22,7 @@ import { StartGameComponent } from './start-game/start-game.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { UpdateComponentComponent } from './update-component/update-component.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,11 +38,13 @@ import { UpdateComponentComponent } from './update-component/update-component.co
     VoterActionsComponent,
     StartGameComponent,
     UserDashboardComponent,
-    UpdateComponentComponent
+    UpdateComponentComponent,
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firebase),

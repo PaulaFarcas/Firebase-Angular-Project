@@ -1,50 +1,41 @@
 <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card shadow-lg">
-          <div class="card-body">
-            <!-- Profile Picture Section -->
-            <div class="text-center mb-4">
-              <!-- Add your profile picture tag here -->
-              <!-- Example: <img src="path/to/profile-picture.jpg" alt="Profile Picture" class="rounded-circle" width="100"> -->
-            </div>
-            
-            <!-- Profile Details Form -->
-            <form>
-              <h2 class="card-title text-center mb-4">Your Profile</h2>
-              <div class="mb-4">
-                <h4 class="text-primary">Profile Details</h4>
-              </div>
-              <!-- First Name Field -->
-              <div class="mb-3">
-                <label for="firstName" class="form-label">First Name </label>
-               
-              </div>
-              
-              <!-- Last Name Field -->
-              <div class="mb-3">
-                <label for="lastName" class="form-label">Last Name </label>
-              </div>
-              
-              <!-- Email Field -->
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-              </div>
-              
-              <!-- Music Style Field -->
-              <div class="mb-3">
-                <label for="musicStyle" class="form-label">Music Style </label>
-               
-              </div>
-              
-              <!-- Update Profile Button -->
-              <button type="button" class="btn btn-warning btn-block" (click)="updateProfile()">
-                Update
-              </button>
-            </form>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <!-- Profile Picture Section -->
+          <div class="text-center mb-4">
+            <!-- Add your profile picture tag here -->
+            <!-- Example: <img src="path/to/profile-picture.jpg" alt="Profile Picture" class="rounded-circle" width="100"> -->
           </div>
+          
+          <!-- Profile Details Form -->
+          <h2 class="card-title text-center mb-4">Your Profile </h2>
+          <div class="mb-4">
+            <h4 class="text-primary">Profile Details</h4>
+          </div>
+          
+          <!-- First Name Field -->
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First name: {{ user.first_name }}</label>
+          </div>
+
+          <!-- Last Name Field -->
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last name: {{ user.last_name }}</label>
+          </div>
+
+          <!-- Music Style Field -->
+          <div class="mb-3">
+            <label for="musicStyle" class="form-label">Music style: {{ user.music_style }}</label>
+          </div>
+
+          <!-- Update Profile Button -->
+          <button type="button" class="btn btn-warning btn-block" (click)="updateProfile()">
+            Update
+          </button>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

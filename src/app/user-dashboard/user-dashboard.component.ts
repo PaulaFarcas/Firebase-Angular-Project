@@ -11,8 +11,19 @@ import { DataService } from '../_service/data.service';
 })
 export class UserDashboardComponent {
 
-  user: any = {};
-  isEditMode = false;
+  user: User = {
+    id: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    music_style:''
+  };
+  id: string = '';
+  first_name: string = '';
+  last_name: string = '';
+  email: string =''
+  music_style:string='';
+  
 
   constructor(
     private authService: AuthService,
@@ -24,7 +35,7 @@ export class UserDashboardComponent {
     // Get the current user's profile from Firestore
     this.authService.getCurrentUser().subscribe((user: { uid: string; }) => {
       if (user) {
-        this.firestoreService.getUserProfile(user.uid).subscribe((profile: any) => {
+       this.firestoreService.getUserProfile(user.uid).subscribe((profile: any) => {
           this.user = profile;
         });
       }
