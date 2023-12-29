@@ -36,9 +36,10 @@ export class UpdateComponentComponent {
     private fb: FormBuilder
   ) {
     this.profileForm = this.fb.group({
+      //id:['',Validators.required],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
-      email: ['', Validators.required],
+      //email: ['', Validators.required],
       music_style: ['']
     });
   }
@@ -58,19 +59,17 @@ export class UpdateComponentComponent {
   saveChanges(): void {
     // Save changes to Firestore
     console.log('User before update:', this.profileForm.value);
+  
     this.authService.getCurrentUser().subscribe((user: { uid: any; }) => {
       if (user) {
-
-        this.firestoreService.updateUserProfile(user.uid, this.profileForm.value).then(() => {
-          // Navigate back to the profile page with updated data
-          this.user = { ...this.profileForm.value };
-          console.log('User after update:', this.user);
-          this.router.navigate(['/user-dashboard'], { state: { user: { ...this.user } } });
+            // Update the user profile in Firestore
+            this.firestoreService.updateUserProfile(user.uid, this.profileForm.value).then(() => {
+              // Navigate back to the profile page with updated data
+              this.router.navigate(['/user-dashboard'], { state: { user: { ...this.user } } });
         });
       }
     });
   }
-
   
   cancel(): void {
     // Navigate back to the profile page without saving changes
