@@ -19,6 +19,8 @@ import { JoinBattleComponent } from './join-battle/join-battle.component';
 import { ContestantActionsComponent } from './contestant-actions/contestant-actions.component';
 import { VoterActionsComponent } from './voter-actions/voter-actions.component';
 import { StartGameComponent } from './start-game/start-game.component';
+import { PlayerViewComponent } from './player-view/player-view.component';
+import { VoterViewComponent } from './voter-view/voter-view.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { StartGameComponent } from './start-game/start-game.component';
     JoinBattleComponent,
     ContestantActionsComponent,
     VoterActionsComponent,
-    StartGameComponent
+    StartGameComponent,
+    PlayerViewComponent,
+    VoterViewComponent
   ],
   imports: [
     BrowserModule,
