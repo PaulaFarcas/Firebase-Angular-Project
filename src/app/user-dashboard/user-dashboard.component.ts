@@ -42,7 +42,13 @@ export class UserDashboardComponent {
     this.authService.getCurrentUser().subscribe((user: { uid: string; }) => {
       if (user) {
        this.firestoreService.getUserProfile(user.uid).subscribe((profile: any) => {
+        if (profile) {
+          // User profile exists, use it
           this.user = profile;
+        } else {
+          // User profile doesn't exist, create a new one
+          this.saveChanges();
+        }
         });
       }
     });
@@ -53,17 +59,15 @@ export class UserDashboardComponent {
     // Save changes to Firestore
     this.authService.getCurrentUser().subscribe((user: { uid: any; }) => {
       if (user) {
-        // Use the user ID obtained from authentication
-        const userId = user.uid;
-  
+       
         // Update only the email field using the current user's email
         this.authService.getCurrentUserEmail().subscribe(currentUserEmail => {
           if (currentUserEmail !== null) {
             this.profileForm.value.email = currentUserEmail;
-            this.profileForm.value.id=userId;
+            this.profileForm.value.id=user.uid;
   
             // Update the user profile in Firestore
-            this.firestoreService.updateUserProfile(userId, this.profileForm.value).then(() => {
+            this.firestoreService.createOrUpdateUserProfile(user.uid, this.profileForm.value).then(() => {
               // Navigate back to the profile page with updated data
             });
           }

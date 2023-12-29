@@ -36,9 +36,22 @@ export class DataService {
       });
   }
   
-
+  createUserProfile(userId: string, userData: any): Promise<void> {
+    return this.afs.collection('users').doc(userId).set(userData);
+  }
+  
   getUserProfile(userId: string): any {
     return this.afs.collection('users').doc(userId).valueChanges();
   }
 
+  createOrUpdateUserProfile(userId: string, userProfile: any): Promise<void> {
+    // Use the provided user ID to determine if the profile already exists
+    return this.afs.collection('users').doc(userId).set(userProfile, { merge: true })
+      .then(() => {
+        console.log('Profile created or updated successfully');
+      })
+      .catch((error) => {
+        console.error('Error creating or updating profile:', error);
+      });
+  }
 }
