@@ -23,11 +23,15 @@ export class DataService {
  }
 
  updateUser(user : User) {
-  this.deleteUser(user);
-  this.addUser(user);
+   this.afs.collection('/User').doc(user.id).update(user);
   }
 
+  updateUserProfile(userId: string, userProfile: any): Promise<void> {
+    return this.afs.collection('users').doc(userId).set(userProfile);
+  }
 
-
+  getUserProfile(userId: string): any {
+    return this.afs.collection('users').doc(userId).valueChanges();
+  }
 
 }
