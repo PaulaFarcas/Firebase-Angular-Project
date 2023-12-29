@@ -21,6 +21,9 @@ import { VoterActionsComponent } from './voter-actions/voter-actions.component';
 import { StartGameComponent } from './start-game/start-game.component';
 import { PlayerViewComponent } from './player-view/player-view.component';
 import { VoterViewComponent } from './voter-view/voter-view.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { UpdateComponentComponent } from './update-component/update-component.component';
 
 
 @NgModule({
@@ -37,12 +40,15 @@ import { VoterViewComponent } from './voter-view/voter-view.component';
     VoterActionsComponent,
     StartGameComponent,
     PlayerViewComponent,
-    VoterViewComponent
+    VoterViewComponent,
+    UserDashboardComponent,
+    UpdateComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MatDialogModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp({"projectId":"fir-project-e0c1c","appId":"1:464348841183:web:37adc0e83390886258556a","storageBucket":"fir-project-e0c1c.appspot.com","apiKey":"AIzaSyDSyoh6yzqLx2qJmzicz1bkf7iC7FF2NF4","authDomain":"fir-project-e0c1c.firebaseapp.com","messagingSenderId":"464348841183","measurementId":"G-14D5H5JD42"})),
     provideAuth(() => getAuth()),

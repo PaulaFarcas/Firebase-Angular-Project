@@ -1,0 +1,37 @@
+<!-- src/app/profile/update-profile/update-profile.component.html -->
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Update Your Profile</h2>
+            <form>
+              <div class="mb-4">
+                <h4 class="text-primary">Profile Details</h4>
+              </div>
+              <div class="mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" [(ngModel)]="user.firstName">
+              </div>
+              <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" [(ngModel)]="user.lastName">
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" [(ngModel)]="user.email" disabled>
+              </div>
+              <div class="mb-3">
+                <label for="musicStyle" class="form-label">Music Style</label>
+                <input type="text" class="form-control" id="musicStyle" [(ngModel)]="user.musicStyle">
+              </div>
+              <button type="button" class="btn btn-warning btn-block" (click)="saveChanges()">Save Changes</button>
+              <button type="button" class="btn btn-secondary btn-block" (click)="cancel()">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

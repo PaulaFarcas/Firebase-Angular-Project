@@ -1,7 +1,7 @@
-/* Custom styling for the dashboard */
+/* Custom styling for the profile page */
 
-.container-fluid {
-    background-color: #f8f9fa;
+.container {
+    max-width: 800px;
   }
   
   .card {
@@ -14,8 +14,16 @@
     padding: 2rem;
   }
   
+  .card-title {
+    color: #343a40;
+  }
+  
   .text-primary {
     color: #007bff;
+  }
+  
+  .form-label {
+    font-weight: bold;
   }
   
   .btn-warning {
@@ -31,10 +39,8 @@
     color: #343a40;
   }
   
-  /* Additional styles for responsiveness */
-  @media (max-width: 768px) {
-    .col-lg-4 {
-      max-width: 100%;
-    }
+  /* Additional styles for improved spacing and alignment */
+  .mb-4 {
+    margin-bottom: 1.5rem;
   }
   

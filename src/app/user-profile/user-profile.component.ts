@@ -3,6 +3,7 @@ import { User } from '../model/user';
 import { AuthService } from '../_service/auth.service';
 import { DataService } from '../_service/data.service';
 import { Observable, of, switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -28,7 +29,7 @@ export class UserProfileComponent {
   music_style:string='';
 
   
-  constructor(private auth: AuthService, private data: DataService) { }
+  constructor(private auth: AuthService, private data: DataService,private router:Router) { }
 
   
   ngOnInit(): void {
@@ -84,56 +85,36 @@ export class UserProfileComponent {
       }
   
       // Check if the user with this email already exists
-      if (this.isUserAlreadyExists(this.email)) {
-        alert('User with this email already exists');
-        return;
+      const existingUser = this.userList.find(user => user.email === this.email);
+
+      if (existingUser) {
+        alert('Existing user');
+        // If user already exists, update the user
+        this.userObj.id = existingUser.id;
+        this.data.updateUser(this.userObj);
+      } else {
+        // If user doesn't exist, add a new user
+        this.userObj.id = '';
+        this.userObj.email = this.email;
+        this.userObj.first_name = this.first_name;
+        this.userObj.last_name = this.last_name;
+        this.userObj.music_style = this.music_style;
+        this.data.addUser(this.userObj);
       }
-  
-      this.userObj.id = '';
-      this.userObj.email = this.email;
-      this.userObj.first_name = this.first_name;
-      this.userObj.last_name = this.last_name;
-      this.userObj.music_style = this.music_style;
-     
-      // Assuming you have a method like addUser in your data service
-      this.data.addUser(this.userObj);
 
 
       this.resetForm();
+     
+
     });
 
   }
 
-  private isUserAlreadyExists(email: string): boolean {
-    return this.userList.some(user => user.email === email);
-  }
-
-  deleteUser(user: User) {
+deleteUser(user: User) {
     if (window.confirm('Are you sure you want to delete ' + user.first_name + ' ' + user.last_name + ' ?')) {
       this.data.deleteUser(user);
     }
   }
-
-
-  sameEmail(emailUser:string):boolean{
-    this.auth.getCurrentUserEmail().subscribe(currentUserEmail => {
-    if (currentUserEmail == emailUser) {
-          console.log(emailUser);
-          console.log(currentUserEmail);
-      return true;
-    }
-    else 
-    return false;
-    });
-    return false;
-  }
-
- 
- 
-  
-
-
-
 }
 
  
