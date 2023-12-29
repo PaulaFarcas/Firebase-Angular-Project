@@ -33,7 +33,7 @@ export class UserDashboardComponent {
 
   updateProfile(): void {
     // Navigate to the update-profile page
-    this.router.navigate(['/update-profile']);
+    this.router.navigate(['/update-component']);
   }
 
 }
