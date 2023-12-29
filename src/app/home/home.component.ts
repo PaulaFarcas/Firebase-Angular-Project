@@ -36,16 +36,6 @@ export class HomeComponent {
   }
 
 
-  profile2(){
-    const userEmail=this.auth.getCurrentUserEmail();
-    if(userEmail){
-      this.router.navigate(['/user-profile'])
-    }else{
-      console.error('Error : User email not available');
-    }
-    
-  }
-
   
 
   }

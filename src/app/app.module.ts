@@ -24,7 +24,7 @@ import { VoterViewComponent } from './voter-view/voter-view.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { UpdateComponentComponent } from './update-component/update-component.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,11 +42,13 @@ import { UpdateComponentComponent } from './update-component/update-component.co
     PlayerViewComponent,
     VoterViewComponent,
     UserDashboardComponent,
-    UpdateComponentComponent
+    UpdateComponentComponent,
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firebase),
