@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./update-component.component.css']
 })
 export class UpdateComponentComponent {
-  user: any;
+  user: any = {};
 
   constructor(
     private authService: AuthService,
@@ -20,25 +20,31 @@ export class UpdateComponentComponent {
   ) { }
 
   ngOnInit(): void {
+    // Check if there is state data passed from the profile page
     const updatedUser = (this.route.snapshot as any).state?.user;
+
     if (updatedUser) {
       this.user = { ...updatedUser };
     } else {
+      // If no data passed, navigate back to the profile page
       this.router.navigate(['/profile']);
     }
   }
 
   saveChanges(): void {
-    this.authService.getCurrentUser().subscribe((user: { uid: string; }) => {
+    // Save changes to Firestore
+    this.authService.getCurrentUser().subscribe((user: { uid: any; }) => {
       if (user) {
         this.firestoreService.updateUserProfile(user.uid, this.user).then(() => {
-          this.router.navigate(['/profile'], { state: { user: { ...this.user } } });
+          // Navigate back to the profile page with updated data
+          this.router.navigate(['/user-dashboard'], { state: { user: { ...this.user } } });
         });
       }
     });
   }
 
   cancel(): void {
-    this.router.navigate(['/profile']);
+    // Navigate back to the profile page without saving changes
+    this.router.navigate(['/user-dashboard']);
   }
 }

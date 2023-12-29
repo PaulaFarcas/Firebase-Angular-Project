@@ -11,32 +11,29 @@ import { DataService } from '../_service/data.service';
 })
 export class UserDashboardComponent {
 
-  
-  user: any // Initialize an empty object
-
+  user: any = {};
   isEditMode = false;
 
-  constructor(private authService: AuthService,private firestoreService: DataService,private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private firestoreService: DataService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.fetchUserProfile();
-  }
-
-  private fetchUserProfile(): void {
+    // Get the current user's profile from Firestore
     this.authService.getCurrentUser().subscribe((user: { uid: string; }) => {
       if (user) {
-        this.firestoreService.getUserProfile(user.uid).subscribe((profile: User) => {
-          this.user = profile as User;
+        this.firestoreService.getUserProfile(user.uid).subscribe((profile: any) => {
+          this.user = profile;
         });
       }
     });
   }
+
   updateProfile(): void {
-    // Navigate to the update-profile page without passing any data initially
-    this.router.navigate(['/update-component']);
-  }
-  updateUserProfileData(updatedUserData: User): void {
-    this.user = updatedUserData;
+    // Navigate to the update-profile page
+    this.router.navigate(['/update-profile']);
   }
 
 }
