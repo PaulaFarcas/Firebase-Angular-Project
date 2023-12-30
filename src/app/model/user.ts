@@ -5,5 +5,5 @@ export interface User {
     email : string,
     //participant: [],  //1- canta 2-voteaza
     music_style:string, //pop,rock,,, if 
-
+    profilePictureUrl: string
 }
