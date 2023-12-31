@@ -26,7 +26,7 @@ export class JoinBattleComponent {
 
   startBattle(){
     if(this.current_player.isReady && this.opponent.isReady){
-      this.router.navigate(['/voter-view']);
+      this.router.navigate(['/player-view']);
     }
   }
 }

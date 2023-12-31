@@ -13,9 +13,10 @@ export class StartGameComponent {
     
   }
 
-  voterAction(){
-    this.router.navigate(['/voter-actions']);
+  goToVoterView(){
+    this.router.navigate(['/voter-view']);
   }
+
   joinBattle(){
     this.router.navigate(['/join-battle']);
   }
