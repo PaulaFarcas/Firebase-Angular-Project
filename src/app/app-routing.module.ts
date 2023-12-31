@@ -12,6 +12,7 @@ import { VoterActionsComponent } from './voter-actions/voter-actions.component';
 import { StartGameComponent } from './start-game/start-game.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UpdateComponentComponent } from './update-component/update-component.component';
+import { FileComponent } from './file/file.component';
 
 
 
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path:'user-profile', component:UserProfileComponent},
   {path:'voter-actions',component:VoterActionsComponent},
   {path:'user-dashboard',component:UserDashboardComponent},
-  {path:'update-component',component:UpdateComponentComponent}
+  {path:'update-component',component:UpdateComponentComponent},
+  {path: 'file',component:FileComponent}
   
 ];
 

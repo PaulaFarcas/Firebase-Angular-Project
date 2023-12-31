@@ -19,6 +19,7 @@ export class UserProfileComponent {
     last_name: '',
     email: '',
     music_style:'',
+    profilePictureUrl: '',
     isWaitingForBattle:false,
     isReady: false
   };

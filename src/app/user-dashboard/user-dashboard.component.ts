@@ -17,7 +17,8 @@ export class UserDashboardComponent {
     first_name: '',
     last_name: '',
     email: '',
-    music_style:''
+    music_style:'',
+    profilePictureUrl: ''
   };
   id: string = '';
   first_name: string = '';
@@ -79,6 +80,10 @@ export class UserDashboardComponent {
   updateProfile(): void {
     // Navigate to the update-profile page
     this.router.navigate(['/update-component']);
+  }
+
+  addProfilePicture(){
+    this.router.navigate(['/file']);
   }
 
 }

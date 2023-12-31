@@ -20,8 +20,13 @@
             </div>
             <div class="mb-3">
               <label for="music_style" class="form-label">Music Style</label>
-              <input type="text" class="form-control" id="musics_style" formControlName="music_style">
+              <input type="text" class="form-control" id="music_style" formControlName="music_style">
             </div>
+            <div class="mb-3">
+              <label for="profilePicture" class="form-label">Profile Picture</label>
+              <input type="file" class="form-control" id="profilePicture" formControlName="profilePicture" (change)="handleImageChange($event)">
+            </div>
+            <img *ngIf="selectedImage" [src]="getSelectedImagePreview()" class="img-fluid mb-3" alt="Selected Image">
             <button type="button" class="btn btn-warning btn-block" (click)="saveChanges()">Save Changes</button>
             <button type="button" class="btn btn-secondary btn-block" (click)="cancel()">Cancel</button>
           </form>
