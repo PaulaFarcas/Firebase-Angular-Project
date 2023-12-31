@@ -6,4 +6,6 @@ export interface User {
     //participant: [],  //1- canta 2-voteaza
     music_style:string, //pop,rock,,, if 
 
+    isWaitingForBattle:boolean;
+    isReady:boolean;
 }
