@@ -8,7 +8,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize, switchMap } from 'rxjs/operators';
 import { FileService } from '../_service/file.service';
 import { FileMetaData } from '../model/FileMetaData';
-import { Observable, Observer, from } from 'rxjs';
+import { EMPTY, Observable, Observer, from, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-update-component',
@@ -106,15 +106,26 @@ export class UpdateComponentComponent {
   }
 
   uploadProfilePicture(): Observable<string> {
-    const userId = this.user.id;
-    const filePath = `profile-pictures/${userId}`;
-    const fileRef = this.fireStorage.ref(filePath);
-    const task = this.fireStorage.upload(filePath, this.selectedImage);
-  
-    return from(task).pipe(
-      switchMap(() => fileRef.getDownloadURL())
+    return this.authService.getCurrentUser().pipe(
+      switchMap((user: { uid: any; }) => {
+        if (user) {
+          const userId = user.uid;
+          console.log(userId);
+          const filePath = `profile-pictures/${userId}/${this.selectedImage?.name}`;
+          const fileRef = this.fireStorage.ref(filePath);
+          const task = this.fireStorage.upload(filePath, this.selectedImage);
+
+          return from(task).pipe(
+            switchMap(() => fileRef.getDownloadURL())
+          );
+        } else {
+          // Handle the case when the user is not available
+          return EMPTY;
+        }
+      })
     );
   }
+  
 
   handleImageChange(event: any): void {
     const files = event?.target?.files;
