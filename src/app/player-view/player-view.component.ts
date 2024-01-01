@@ -27,6 +27,5 @@ export class PlayerViewComponent {
   }
   playPlayer2Music(){
     console.log('Playing MUSIC 2');
-
   }
 }
