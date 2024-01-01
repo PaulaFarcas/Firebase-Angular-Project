@@ -46,6 +46,7 @@ export class UserDashboardComponent {
         if (profile) {
           // User profile exists, use it
           this.user = profile;
+          console.log('user: ',this.user);
         } else {
           // User profile doesn't exist, create a new one
           this.saveChanges();
@@ -82,8 +83,8 @@ export class UserDashboardComponent {
     this.router.navigate(['/update-component']);
   }
 
-  addProfilePicture(){
-    this.router.navigate(['/file']);
+  goBack(){
+    this.router.navigate(['/home'])
   }
 
 }

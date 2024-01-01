@@ -26,7 +26,8 @@
               <label for="profilePicture" class="form-label">Profile Picture</label>
               <input type="file" class="form-control" id="profilePicture" formControlName="profilePicture" (change)="handleImageChange($event)">
             </div>
-            <img *ngIf="selectedImage" [src]="getSelectedImagePreview()" class="img-fluid mb-3" alt="Selected Image">
+            <img *ngIf="selectedImage && selectedImagePreview" [src]="selectedImagePreview" class="img-fluid mb-3" alt="Selected Image">
+
             <button type="button" class="btn btn-warning btn-block" (click)="saveChanges()">Save Changes</button>
             <button type="button" class="btn btn-secondary btn-block" (click)="cancel()">Cancel</button>
           </form>

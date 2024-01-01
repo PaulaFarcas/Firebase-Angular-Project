@@ -4,11 +4,8 @@
       <div class="card shadow-lg">
         <div class="card-body">
           <!-- Profile Picture Section -->
-          <div class="text-center mb-4">
-            <!-- Add your profile picture tag here -->
-            <!-- Example: <img src="path/to/profile-picture.jpg" alt="Profile Picture" class="rounded-circle" width="100"> -->
-          </div>
-          
+            <!-- Add this img tag to display the profile picture -->
+              <img *ngIf="user.profilePictureUrl" [src]="user.profilePictureUrl" alt="Profile Picture">
           <!-- Profile Details Form -->
           <h2 class="card-title text-center mb-4">Your Profile </h2>
           <div class="mb-4">
@@ -32,8 +29,8 @@
           <button type="button" class="btn btn-warning btn-block" (click)="updateProfile()">
             Update
           </button>
-          <button type="button" class="btn btn-warning btn-block" (click)="addProfilePicture()">
-            Add profile picture
+          <button type="button" class="btn btn-warning btn-block" (click)="goBack()">
+            Go home
           </button>
 
         </div>

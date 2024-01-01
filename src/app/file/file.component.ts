@@ -15,6 +15,7 @@ import { AuthService } from '../_service/auth.service';
   styleUrls: ['./file.component.css']
 })
 export class FileComponent {
+  /*
   selectedFiles !: FileList;
   currentFileUpload !: FileMetaData;
   percentage: number = 0;
@@ -87,5 +88,5 @@ export class FileComponent {
     })
   }
 
-  
+ */ 
 }
