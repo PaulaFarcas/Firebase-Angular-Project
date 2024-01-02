@@ -18,7 +18,7 @@ export class UserDashboardComponent {
     last_name: '',
     email: '',
     music_style:'',
-    profilePictureUrl: ''
+    profilePicture: ''
   };
   id: string = '';
   first_name: string = '';
@@ -39,7 +39,7 @@ export class UserDashboardComponent {
 
   ngOnInit(): void {
     // Get the current user's profile from Firestore
-
+    
     this.authService.getCurrentUser().subscribe((user: { uid: string; }) => {
       if (user) {
        this.firestoreService.getUserProfile(user.uid).subscribe((profile: any) => {

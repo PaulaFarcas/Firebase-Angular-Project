@@ -3,7 +3,6 @@ export interface User {
     first_name : string,
     last_name : string,
     email : string,
-    //participant: [],  //1- canta 2-voteaza
-    music_style:string, //pop,rock,,, if 
-    profilePictureUrl: string
+    music_style:string, 
+    profilePicture: string
 }

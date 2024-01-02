@@ -23,7 +23,7 @@ export class UpdateComponentComponent {
     last_name: '',
     email: '',
     music_style: '',
-    profilePictureUrl: ''
+    profilePicture: ''
   };
 
   profileForm: FormGroup;
@@ -87,7 +87,7 @@ export class UpdateComponentComponent {
     if (this.selectedImage) {
       this.uploadProfilePicture().subscribe(downloadURL => {
         // Update the user profile in Firestore with the downloadURL
-        this.user.profilePictureUrl = downloadURL;
+        this.user.profilePicture = downloadURL;
         this.profileForm.value.profilePicture=downloadURL;
         this.updateUserProfile();
       });
