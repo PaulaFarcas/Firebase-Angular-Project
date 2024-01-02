@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg">
+        <div class="card-body">
+
+          <!-- Profile Picture Section -->
+          <img *ngIf="user.profilePicture" [src]="user.profilePicture" alt="Profile Picture">
+
+          <!-- Profile Details Form -->
+          <h2 class="card-title text-center mb-4 text-primary">Profile</h2>
+       
+          <!-- First Name Field -->
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First name: </label>
+            <span class="form-value">{{ user.first_name }}</span>
+          </div>
+
+          <!-- Last Name Field -->
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last name: </label>
+            <span class="form-value">{{ user.last_name }}</span>
+          </div>
+
+          <!-- Music Style Field -->
+          <div class="mb-3">
+            <label for="musicStyle" class="form-label">Music style: </label>
+            <span class="form-value">{{ user.music_style }}</span>
+        </div>
+
+          <!-- Update Profile Button -->
+          <button type="button" class="btn btn-custom btn-block" (click)="updateProfile()">Update</button>
+
+          <!-- Go Home Button -->
+          <button type="button" class="btn btn-custom btn-block" (click)="goBack()">Go home</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
