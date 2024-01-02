@@ -30,6 +30,7 @@ export class UpdateComponentComponent {
   selectedImage: File | null = null;
   profilePictureControl: AbstractControl | null = null;
   selectedImagePreview: string | ArrayBuffer = '';
+  filePath: any;
 
   constructor(
     private authService: AuthService,
@@ -87,6 +88,7 @@ export class UpdateComponentComponent {
       this.uploadProfilePicture().subscribe(downloadURL => {
         // Update the user profile in Firestore with the downloadURL
         this.user.profilePictureUrl = downloadURL;
+        this.profileForm.value.profilePicture=downloadURL;
         this.updateUserProfile();
       });
     } else {
@@ -111,9 +113,9 @@ export class UpdateComponentComponent {
         if (user) {
           const userId = user.uid;
           console.log(userId);
-          const filePath = `profile-pictures/${userId}/${this.selectedImage?.name}`;
-          const fileRef = this.fireStorage.ref(filePath);
-          const task = this.fireStorage.upload(filePath, this.selectedImage);
+          this.filePath = `profile-pictures/${userId}/${this.selectedImage?.name}`;
+          const fileRef = this.fireStorage.ref(this.filePath);
+          const task = this.fireStorage.upload(this.filePath, this.selectedImage);
 
           return from(task).pipe(
             switchMap(() => fileRef.getDownloadURL())
