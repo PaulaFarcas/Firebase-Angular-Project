@@ -10,6 +10,11 @@ import { JoinBattleComponent } from './join-battle/join-battle.component';
 import { ContestantActionsComponent } from './contestant-actions/contestant-actions.component';
 import { VoterActionsComponent } from './voter-actions/voter-actions.component';
 import { StartGameComponent } from './start-game/start-game.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { UpdateComponentComponent } from './update-component/update-component.component';
+import { FileComponent } from './file/file.component';
+
+
 
 const routes: Routes = [
   {path:'',redirectTo:'login', pathMatch:'full'},
@@ -24,7 +29,10 @@ const routes: Routes = [
   { path: 'voter-actions', component: VoterActionsComponent },
   { path: 'start-game', component: StartGameComponent },
   {path:'user-profile', component:UserProfileComponent},
-  {path:'voter-actions',component:VoterActionsComponent}
+  {path:'voter-actions',component:VoterActionsComponent},
+  {path:'user-dashboard',component:UserDashboardComponent},
+  {path:'update-component',component:UpdateComponentComponent},
+  {path: 'file',component:FileComponent}
   
 ];
 

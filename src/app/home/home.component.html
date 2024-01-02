@@ -1,21 +1,29 @@
-<div class="container-fluid">
-    <div class="row mt-5">
-        <div class="col"></div>
-        <div class="col-4">
-            <div class="card shadow">
-                <div class="card-body"></div>
-                <form>
-                    <div class="mb-3">
-                        <h4 class="text-dark text-muted">Welcome</h4>
-                        <button type="button" class="btn btn-warning text-center" (click)="startGame()">Start Game</button>
-                        <button type="button" class="btn btn-warning text-center" (click)="profile()">Profile</button>
-                    </div>
-                    
-                    <button type="button" class="btn btn-warning text-center" (click)="register()">Logout</button>
-                    
-                  </form>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <!-- Logout button in the upper right corner -->
+          <div class="mb-3 text-right">
+            <button type="button" class="btn btn-logout" (click)="register()">Logout</button>
+          </div>
+
+          <div class="text-center mb-4">
+            <h2 class="text-primary">Welcome</h2>
+          </div>
+
+          <!-- Start Game and Profile buttons side by side -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <button type="button" class="btn btn-custom btn-block" (click)="startGame()">Start Game</button>
             </div>
+            <div class="col-md-6 mb-3">
+              <button type="button" class="btn btn-custom btn-block" (click)="profile()">Profile</button>
+            </div>
+          </div>
         </div>
-        <div class="col"></div>
+      </div>
     </div>
+  </div>
 </div>

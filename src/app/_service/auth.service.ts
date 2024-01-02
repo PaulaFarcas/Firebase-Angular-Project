@@ -89,6 +89,10 @@ export class AuthService {
     })
   }
 
+  getCurrentUser(): any {
+    return this.fireauth.authState;
+  }
+
   
 
 }

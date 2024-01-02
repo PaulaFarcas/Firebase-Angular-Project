@@ -1,0 +1,80 @@
+/* Custom styling for the profile page */
+
+.container {
+    max-width: 800px;
+    margin-top: 50px;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 2rem;
+    text-align: left;
+  }
+  
+  .card-title {
+    color: #343a40;
+    font-size: 1.8rem;
+  }
+  
+  .text-primary {
+    color: #007bff;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    
+  }
+  
+  .btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: white;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    width: 150px;
+    height:40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .btn-warning:hover {
+    background-color: #ffca2c;
+    border-color: #ffca2c;
+    color: white;
+  }
+
+
+  .btn-custom {
+    background-color: #898e92;
+    border-color: #898e92;
+    color: white;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    width: 150px;
+    height:40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-custom:hover {
+    background-color: #898e92;
+    border-color: #898e92;
+    color: white
+   ;
+   
+  }
+
+
+
+  
+  /* Additional styles for improved spacing and alignment */
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+
+  

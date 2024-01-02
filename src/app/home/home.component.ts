@@ -3,6 +3,7 @@ import { AuthService } from '../_service/auth.service';
 import { User } from '../model/user';
 import { DataService } from '../_service/data.service';
 import { Router } from '@angular/router';
+import { user } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-home',
@@ -25,8 +26,15 @@ export class HomeComponent {
     this.router.navigate(['/start-game']);
   }
   profile(){
-    this.router.navigate(['/user-profile']);
+    const userEmail=this.auth.getCurrentUserEmail();
+    if(userEmail){
+      this.router.navigate(['/user-dashboard'])
+    }else{
+      console.error('Error : User email not available');
+    }
+    
   }
+
 
   
 
