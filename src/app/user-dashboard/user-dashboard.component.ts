@@ -18,7 +18,7 @@ export class UserDashboardComponent {
     last_name: '',
     email: '',
     music_style:'',
-    profileProfile:'',
+    profilePicture:'',
     isWaitingForBattle: false,
     isReady: false
   };

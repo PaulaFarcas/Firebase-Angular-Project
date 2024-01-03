@@ -4,8 +4,7 @@ export interface User {
     last_name : string,
     email : string,
     music_style:string, //pop,rock,,, if 
-
-    profilePictureUrl: string;
+    profilePicture: string;
     isWaitingForBattle:boolean;
     isReady:boolean;
 }
