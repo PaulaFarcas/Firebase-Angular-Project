@@ -18,7 +18,7 @@ export class UserDashboardComponent {
     last_name: '',
     email: '',
     music_style:'',
-    profilePictureUrl: '',
+    profileProfile:'',
     isWaitingForBattle: false,
     isReady: false
   };
@@ -41,23 +41,24 @@ export class UserDashboardComponent {
 
   ngOnInit(): void {
     // Get the current user's profile from Firestore
-
     this.authService.getCurrentUser().subscribe((user: { uid: string; }) => {
       if (user) {
-       this.firestoreService.getUserProfile(user.uid).subscribe((profile: any) => {
-        if (profile) {
-          // User profile exists, use it
-          this.user = profile;
-        } else {
-          // User profile doesn't exist, create a new one
-          this.saveChanges();
-        }
+        this.firestoreService.getUserProfile(user.uid).subscribe((profile: any) => {
+          if (profile) {
+            // User profile exists, use it
+            this.user = profile;
+            console.log('user: ', this.user);
+          } else {
+            // User profile doesn't exist, create a new one only if the user is not already on the user-dashboard page
+            if (!this.router.url.includes('/user-dashboard')) {
+              this.saveChanges();
+            }
+          }
         });
       }
     });
-
-    
   }
+  
   saveChanges(): void {
     // Save changes to Firestore
     this.authService.getCurrentUser().subscribe((user: { uid: any; }) => {
@@ -84,8 +85,8 @@ export class UserDashboardComponent {
     this.router.navigate(['/update-component']);
   }
 
-  addProfilePicture(){
-    this.router.navigate(['/file']);
+  goBack(){
+    this.router.navigate(['/home'])
   }
 
 }

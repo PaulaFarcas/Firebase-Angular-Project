@@ -32,7 +32,6 @@ export class FileService {
     return this.fireStore.collection('/Upload').snapshotChanges();
   }
 
-
- 
+  
 
 }

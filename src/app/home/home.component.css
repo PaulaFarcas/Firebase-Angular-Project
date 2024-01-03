@@ -1,40 +1,81 @@
-/* Custom styling for the dashboard */
+/* Custom styling for the profile page */
 
-.container-fluid {
-    background-color: #f8f9fa;
-  }
+.container {
+  max-width: 800px;
+  margin-top: 50px;
+ 
+}
+
+.card {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 2rem;
+  text-align: center;
+}
+
+.card-title {
+  color: #343a40;
+  font-size: 1.8rem;
+}
+
+.text-primary {
+  color: #007bff;
+  font-size: 4.0rem;
+  font-weight: 500;
+  margin-bottom: 100px;
+  margin-top: 70px;
+}
+
+.form-label {
+  font-weight: bold;
   
-  .card {
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-body {
-    padding: 2rem;
-  }
-  
-  .text-primary {
-    color: #007bff;
-  }
-  
-  .btn-warning {
-    background-color: #ffc107;
-    border-color: #ffc107;
-    color: #343a40;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-warning:hover {
-    background-color: #ffca2c;
-    border-color: #ffca2c;
-    color: #343a40;
-  }
-  
-  /* Additional styles for responsiveness */
-  @media (max-width: 768px) {
-    .col-lg-4 {
-      max-width: 100%;
-    }
-  }
-  
+}
+
+/* Logout button */
+.btn-logout {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: white;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  width: 100px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-logout:hover {
+  background-color: #ffca2c;
+  border-color: #ffca2c;
+
+}
+
+/* Start Game and Profile buttons */
+.btn-custom {
+  background-color:#ffca2c;
+  border-color: #ffca2c;
+  color: white;
+  transition: background-color 0.3s ease;
+  margin-top: 150px;
+  font-size: 18px;
+  width: 150px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 500;
+}
+
+.btn-custom:hover {
+  background-color: #ffca2c;
+  border-color: #ffca2c;
+}
+
+/* Additional styles for improved spacing and alignment */
+.mb-4 {
+  margin-bottom: 1.5rem;
+}

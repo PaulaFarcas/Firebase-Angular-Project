@@ -1,46 +1,85 @@
 /* Custom styling for the profile page */
 
 .container {
-    max-width: 800px;
-  }
-  
-  .card {
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-body {
-    padding: 2rem;
-  }
-  
-  .card-title {
-    color: #343a40;
-  }
-  
-  .text-primary {
-    color: #007bff;
-  }
-  
-  .form-label {
-    font-weight: bold;
-  }
-  
-  .btn-warning {
-    background-color: #ffc107;
-    border-color: #ffc107;
-    color: #343a40;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-warning:hover {
-    background-color: #ffca2c;
-    border-color: #ffca2c;
-    color: #343a40;
-  }
-  
-  /* Additional styles for improved spacing and alignment */
-  .mb-4 {
-    margin-bottom: 1.5rem;
-  }
-  
+  max-width: 800px;
+  margin-top: 50px;
+}
+
+.card {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 2rem;
+  text-align: center;
+}
+
+.card-title {
+  color: #343a40;
+  font-size: 1.8rem;
+}
+
+.text-primary {
+  color: #007bff;
+  font-weight: 400;
+
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-right: 4px;
+}
+
+.form-value{
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: white;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.btn-warning:hover {
+  background-color: #ffca2c;
+  border-color: #ffca2c;
+  color: white;
+}
+
+/* Additional styles for improved spacing and alignment */
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-custom {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: white;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+  font-size: 16px; /* Adjust the font size as needed */
+  width: 150px;
+  height:40px;
+  font-weight: 500;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-custom:hover {
+  background-color: #ffca2c;
+  border-color: #ffca2c;
+  color: white;
+}
