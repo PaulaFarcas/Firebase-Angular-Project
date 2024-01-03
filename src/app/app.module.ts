@@ -16,9 +16,9 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { JoinBattleComponent } from './join-battle/join-battle.component';
-import { ContestantActionsComponent } from './contestant-actions/contestant-actions.component';
-import { VoterActionsComponent } from './voter-actions/voter-actions.component';
 import { StartGameComponent } from './start-game/start-game.component';
+import { PlayerViewComponent } from './player-view/player-view.component';
+import { VoterViewComponent } from './voter-view/voter-view.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { UpdateComponentComponent } from './update-component/update-component.component';
@@ -40,9 +40,9 @@ import { FileComponent } from './file/file.component';
     VerifyEmailComponent,
     UserProfileComponent,
     JoinBattleComponent,
-    ContestantActionsComponent,
-    VoterActionsComponent,
     StartGameComponent,
+    PlayerViewComponent,
+    VoterViewComponent,
     UserDashboardComponent,
     UpdateComponentComponent,
     FileComponent,
