@@ -45,7 +45,6 @@ export class UserDashboardComponent {
           if (profile) {
             // User profile exists, use it
             this.user = profile;
-            console.log('user: ', this.user);
           } else {
             // User profile doesn't exist, create a new one only if the user is not already on the user-dashboard page
             if (!this.router.url.includes('/user-dashboard')) {
@@ -67,7 +66,7 @@ export class UserDashboardComponent {
           if (currentUserEmail !== null) {
             this.profileForm.value.email = currentUserEmail;
             this.profileForm.value.id=user.uid;
-  
+
             // Update the user profile in Firestore
             this.firestoreService.createOrUpdateUserProfile(user.uid, this.profileForm.value).then(() => {
               // Navigate back to the profile page with updated data
