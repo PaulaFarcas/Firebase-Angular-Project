@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./voters-space.component.css']
 })
 export class VotersSpaceComponent {
-
+    
 }
