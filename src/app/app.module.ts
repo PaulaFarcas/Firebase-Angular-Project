@@ -27,6 +27,9 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { StorageModule } from '@angular/fire/storage';
 import { HttpClientModule } from '@angular/common/http';
 import { FileComponent } from './file/file.component';
+import { YoutubeSongViewComponent } from './youtube-song-view/youtube-song-view.component';
+import { PlayerSpaceComponent } from './player-space/player-space.component';
+import { VotersSpaceComponent } from './voters-space/voters-space.component';
 
 
 
@@ -46,6 +49,9 @@ import { FileComponent } from './file/file.component';
     UserDashboardComponent,
     UpdateComponentComponent,
     FileComponent,
+    YoutubeSongViewComponent,
+    PlayerSpaceComponent,
+    VotersSpaceComponent,
   ],
   imports: [
     BrowserModule,
