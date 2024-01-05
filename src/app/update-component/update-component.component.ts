@@ -127,8 +127,8 @@ export class UpdateComponentComponent {
           this.user.last_name = updatedProfile.last_name;
         }
   
-        if (updatedProfile.music_style !== null && updatedProfile.music_style !=='') {
-          this.user.music_style = updatedProfile.music_style;
+        if (updatedProfile.music_styles !== null && updatedProfile.music_styles !=='') {
+          this.user.music_styles = updatedProfile.music_styles;
         }
   
         if (updatedProfile.profilePicture !== null) {
