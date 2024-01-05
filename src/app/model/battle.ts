@@ -1,17 +1,19 @@
 import { User } from "./user";
+import { Song } from "./song";
+import { SongService } from "../_service/song.service";
 
 export class Battle {
     id: string;
-    songStyle: string;
     firstPlayer: User;
     secondPlayer: User;
     voters: User[]= [];
+    song: Song;
 
-    constructor(FirstPlayer: User, SecondPlayer: User, SongStyle: string){
+    constructor(FirstPlayer: User, SecondPlayer: User){
         this.firstPlayer=FirstPlayer;
         this.secondPlayer=SecondPlayer;
-        this.songStyle=SongStyle;
         this.id=FirstPlayer.id+SecondPlayer.id;
+        this.song=SongService.findSong(FirstPlayer.music_styles, SecondPlayer.music_styles);
     }
 
     addVoter(voter:User){
