@@ -22,7 +22,7 @@ export class UpdateComponentComponent {
     first_name: '',
     last_name: '',
     email: '',
-    music_style: '',
+    music_styles: [],
     profilePicture: '',
     isWaitingForBattle: false,
     isReady: false
