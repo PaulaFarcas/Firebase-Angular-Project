@@ -20,4 +20,8 @@ export class StartGameComponent {
   joinBattle(){
     this.router.navigate(['/join-battle']);
   }
+
+  goHome(){
+    this.router.navigate(['/home']);
+  }
 }

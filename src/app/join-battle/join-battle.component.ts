@@ -36,7 +36,18 @@ export class JoinBattleComponent {
   constructor(private auth: AuthService, private data: DataService, private router:Router){}
 
   ngOnInit(): void {
-    this.current_player=this.auth.getCurrentUser();
+    //this.current_player=this.auth.getCurrentUser();
+    this.auth.getCurrentUser().subscribe((user: { uid: string; }) => {
+      if (user) {
+        this.data.getUserProfile(user.uid).subscribe((profile: any) => {
+          if (profile) {
+            // User profile exists, use it
+            this.current_player = profile;
+          } 
+        });
+      }
+    });
+  
     this.opponent= this.findOpponent();
   }
 
