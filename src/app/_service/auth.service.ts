@@ -94,6 +94,4 @@ export class AuthService {
     return this.fireauth.authState;
   }
 
-  
-
 }

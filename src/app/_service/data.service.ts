@@ -11,19 +11,19 @@ export class DataService {
 
   addUser(user: User){
     user.id=this.afs.createId();
-    return this.afs.collection('/User').add(user);
+    return this.afs.collection('users').add(user);
   }
 
   getAllUsers() {
-    return this.afs.collection('/User').snapshotChanges();
+    return this.afs.collection('users').snapshotChanges();
   }
 
   deleteUser(user : User) {
-    this.afs.doc('/User/'+user.id).delete();
+    this.afs.doc('/users/'+user.id).delete();
  }
 
  updateUser(user : User) {
-   this.afs.collection('/User').doc(user.id).update(user);
+   this.afs.collection('users').doc(user.id).update(user);
   }
 
   updateUserProfile(userId: string, userProfile: any): Promise<void> {

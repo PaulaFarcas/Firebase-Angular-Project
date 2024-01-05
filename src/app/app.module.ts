@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import {AngularFireModule} from '@angular/fire/compat'
+import { AngularFireModule} from '@angular/fire/compat'
 import { environment } from './environments/environment';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
@@ -14,13 +14,12 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { HomeComponent } from './home/home.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 import { JoinBattleComponent } from './join-battle/join-battle.component';
 import { StartGameComponent } from './start-game/start-game.component';
 import { PlayerViewComponent } from './player-view/player-view.component';
 import { VoterViewComponent } from './voter-view/voter-view.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule} from '@angular/material/dialog';
 import { UpdateComponentComponent } from './update-component/update-component.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { getStorage, provideStorage } from '@angular/fire/storage';
@@ -41,7 +40,6 @@ import { VotersSpaceComponent } from './voters-space/voters-space.component';
     HomeComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    UserProfileComponent,
     JoinBattleComponent,
     StartGameComponent,
     PlayerViewComponent,

@@ -1,64 +1,82 @@
-import { Component } from '@angular/core';
-import { User } from '../model/user';
-import { AuthService } from '../_service/auth.service';
-import { DataService } from '../_service/data.service';
-import { Router } from '@angular/router';
-import { BattleService } from '../_service/battle.service';
+  import { Component } from '@angular/core';
+  import { User } from '../model/user';
+  import { AuthService } from '../_service/auth.service';
+  import { DataService } from '../_service/data.service';
+  import { Router } from '@angular/router';
+  import { BattleService } from '../_service/battle.service';
 
-@Component({
-  selector: 'app-join-battle',
-  templateUrl: './join-battle.component.html',
-  styleUrls: ['./join-battle.component.css']
-})
-export class JoinBattleComponent {
-  
-  current_player:User = {
-    id: '',
-    first_name: '',
-    last_name: '',
-    email: '',
-    music_styles: [],
-    profilePicture: '',
-    isWaitingForBattle: true,
-    isReady: false
-  };
-
-  opponent:User = {
-    id: '',
-    first_name: '',
-    last_name: '',
-    email: '',
-    music_styles: [],
-    profilePicture: '',
-    isWaitingForBattle: true,
-    isReady: false
-  };
-
-  waitingStatus:string='If ready, click ready!'
-
-  constructor(private auth: AuthService, private data: DataService, private router:Router, private battleService:BattleService){}
-
-  ngOnInit(): void {
-    this.current_player=this.auth.getCurrentUser();
-    this.opponent= this.findOpponent();
+  @Component({
+    selector: 'app-join-battle',
+    templateUrl: './join-battle.component.html',
+    styleUrls: ['./join-battle.component.css']
+  })
+  export class JoinBattleComponent {
     
-  }
+    current_player:User = {
+      id: '',
+      first_name: '',
+      last_name: '',
+      email: '',
+      music_styles: [],
+      profilePicture: '',
+      isWaitingForBattle: true,
+      isReady: false
+    };
 
-  findOpponent(){
-    return (<User[]>(<unknown>this.data.getAllUsers())).filter(user => user.isWaitingForBattle)[0];
-  }
+    opponent:User = {
+      id: '',
+      first_name: '',
+      last_name: '',
+      email: '',
+      music_styles: [],
+      profilePicture: '',
+      isWaitingForBattle: true,
+      isReady: true
+    };
 
-  startBattle(){
-    this.current_player.isReady=true;  //set is Ready to current User
-    this.data.updateUser(this.current_player);
+    waitingStatus:string='If ready, click ready!';
 
-    if(this.data.getUserProfile(this.opponent.id).isReady){
-      this.battleService.createBattle(this.current_player, this.opponent);
-      this.router.navigate(['/player-view']);
+    constructor(private auth: AuthService, private data: DataService, private router:Router, private battleService:BattleService){}
+
+    ngOnInit(): void {
+      this.auth.getCurrentUser().subscribe((user: {uid:string}) => {
+        if (user) {
+          this.data.getUserProfile(user.uid).subscribe((profile:any)=>{
+            if (profile) {
+              this.current_player = profile;
+            }
+            else{
+              console.error('Error: something happened, could not find profile');
+            }
+          })
+        } else {
+          console.error('Error: User or user.id is undefined');
+        }
+      });
     }
-    else {
-      this.waitingStatus='Waiting for the other opponent'
+
+    findOpponent() {
+      this.data.getAllUsers().subscribe((users) => {
+        const waitingOpponent:User = <User>users.map(user => user.payload.doc.data()).find((user:any) => user.isWaitingForBattle);
+        if (waitingOpponent) {
+          this.opponent = waitingOpponent;
+        } else {
+          this.waitingStatus = 'No opponent waiting for battle';
+        }
+      });
     }
+
+    startBattle() {
+      console.log('start Battle clicked'); 
+      this.current_player.isReady=true;
+        this.data.updateUser(Object.assign({}, this.current_player));
+    
+        if (this.opponent.isReady) {
+          this.battleService.createBattle(this.current_player, this.opponent);
+          this.router.navigate(['/player-view']);
+        } else {
+          this.waitingStatus = 'Waiting for the other opponent';
+        }
+    }    
   }
-}
- 
+  
