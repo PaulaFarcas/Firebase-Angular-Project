@@ -78,14 +78,30 @@ export class UpdateComponentComponent {
   ngOnInit(): void {
     // Load user data and set it in the form
     // ...
-    this.getSelectedImagePreview().subscribe(result => {
-      this.selectedImagePreview = result;
+    console.log('Ng on init executed');
+    this.authService.getCurrentUser().subscribe((user: { uid: string; }) => {
+      if (user) {
+        console.log('Current user retrieved:', user);
+        this.firestoreService.getUserProfile(user.uid).subscribe((profile: any) => {
+          if (profile) {
+            // User profile exists, use it
+            this.user = profile;
+            console.log('user: ', this.user);
+          } else {
+            // User profile doesn't exist, create a new one only if the user is not already on the user-dashboard page
+            if (!this.router.url.includes('/user-dashboard')) {
+              this.saveChanges();
+            }
+          }
+        });
+      }
     });
+
   }
 
   saveChanges(): void {
     // Save changes to Firestore
-    console.log('User before update:', this.profileForm.value);
+
     if (this.selectedImage) {
       this.uploadProfilePicture().subscribe(downloadURL => {
         // Update the user profile in Firestore with the downloadURL
@@ -101,20 +117,41 @@ export class UpdateComponentComponent {
   updateUserProfile(): void {
     this.authService.getCurrentUser().subscribe((user: { uid: any; }) => {
       if (user) {
-        this.firestoreService.updateUserProfile(user.uid, this.profileForm.value).then(() => {
+        const updatedProfile: any = { ...this.profileForm.value };
+  
+        if (updatedProfile.first_name !== null && updatedProfile.first_name !== '') {
+          this.user.first_name = updatedProfile.first_name;
+        }
+  
+        if (updatedProfile.last_name !== null && updatedProfile.last_name !== '') {
+          this.user.last_name = updatedProfile.last_name;
+        }
+  
+        if (updatedProfile.music_style !== null && updatedProfile.music_style !=='') {
+          this.user.music_style = updatedProfile.music_style;
+        }
+  
+        if (updatedProfile.profilePicture !== null) {
+          this.user.profilePicture = updatedProfile.profilePicture
+        }
+        // Add similar checks for other fields as needed
+        console.log('Save changes user ',user);
+        this.firestoreService.updateUserProfile(user.uid, this.user).then(() => {
           // Navigate back to the profile page with updated data
+          console.log('update changes user ',this.user);
           this.router.navigate(['/user-dashboard'], { state: { user: { ...this.user } } });
         });
       }
     });
   }
+  
 
   uploadProfilePicture(): Observable<string> {
     return this.authService.getCurrentUser().pipe(
       switchMap((user: { uid: any; }) => {
         if (user) {
           const userId = user.uid;
-          console.log(userId);
+
           this.filePath = `profile-pictures/${userId}/${this.selectedImage?.name}`;
           const fileRef = this.fireStorage.ref(this.filePath);
           const task = this.fireStorage.upload(this.filePath, this.selectedImage);

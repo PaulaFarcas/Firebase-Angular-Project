@@ -19,7 +19,7 @@ export class AuthService {
         localStorage.setItem('token','true');
 
         if(res.user?.emailVerified == true) {
-          this.router.navigate(['home']);
+          this.router.navigate(['/home']);
 
         } else {
           this.router.navigate(['/verify-email']);
@@ -27,7 +27,7 @@ export class AuthService {
 
     }, err => {
         alert(err.message);
-        this.router.navigate(['/login']);
+        this.router.navigate(['login']);
     })
   }
   getCurrentUserEmail(): Observable<string | null> {
@@ -35,13 +35,14 @@ export class AuthService {
       map(user => user?.email || null)
     );
   }
+  
 
   // register method
   register(email : string, password : string) {
     this.fireauth.createUserWithEmailAndPassword(email, password).then( res => {
       alert('Registration Successful');
       this.sendEmailForVarification(res.user);
-      this.router.navigate(['/login']);
+      this.router.navigate(['login']);
     }, err => {
       alert(err.message);
       this.router.navigate(['/register']);
@@ -52,7 +53,7 @@ export class AuthService {
   logout() {
     this.fireauth.signOut().then( () => {
       localStorage.removeItem('token');
-      this.router.navigate(['/login']);
+      this.router.navigate(['login']);
     }, err => {
       alert(err.message);
     })
