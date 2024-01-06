@@ -25,9 +25,14 @@
           <!-- Music Style Field -->
           <div class="mb-3">
             <label for="musicStyle" class="form-label">Music style: </label>
-            <span class="form-value">{{ user.music_styles }}</span>
-        </div>
-
+            <ng-container *ngFor="let style of user.music_style; let last = last">
+              <ng-container *ngIf="style !== ''">
+                <span class="form-value">{{ style }}</span>
+                <ng-container *ngIf="!last">, </ng-container>
+              </ng-container>
+            </ng-container>
+          </div>
+          
           <!-- Update Profile Button -->
           <button type="button" class="btn btn-custom btn-block" (click)="updateProfile()">Update</button>
 

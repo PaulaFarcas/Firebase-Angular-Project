@@ -1,4 +1,78 @@
-button{
-    margin-right: 10px;
-    margin-left: 10px;
+/* Custom styling for the profile page */
+
+.container {
+    max-width: 800px;
+    margin-top: 50px;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 2rem;
+    text-align: left;
+  }
+
+
+  .text-color{
+        color:#0e5ba8;
+        font-weight:bold;
+        font-size: 80px;
+        margin-top: 40px;
+        margin-bottom: 50px;
+        text-align: center;
 }
+.text-danger{
+    color:#ff3c00;
+    font-weight:600;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+  
+  .btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: white;
+    transition: background-color 0.3s ease;
+    margin-top: 130px;
+    width: 150px;
+    font-weight: 500;
+    height:40px;
+    font-size: 20px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+  }
+  
+  .btn-back{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: white;
+    transition: background-color 0.3s ease;
+    width: 100px;
+    font-weight: 500;
+    height:30px;
+    font-size: 18px;
+    margin-left: 40px;
+    margin-top:10px;
+    margin-bottom:20px;
+      
+  }
+  
+
+  
+  /* Additional styles for improved spacing and alignment */
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+
+  

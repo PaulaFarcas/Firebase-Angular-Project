@@ -17,7 +17,7 @@
       first_name: '',
       last_name: '',
       email: '',
-      music_styles: [],
+      music_style: [],
       profilePicture: '',
       isWaitingForBattle: true,
       isFound: false
@@ -28,7 +28,7 @@
       first_name: '',
       last_name: '',
       email: '',
-      music_styles: [],
+      music_style: [],
       profilePicture: '',
       isWaitingForBattle: true,
       isFound: true

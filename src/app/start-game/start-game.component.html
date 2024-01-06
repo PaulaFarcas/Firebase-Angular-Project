@@ -4,15 +4,18 @@
         <div class="col-4">
             <div class="card shadow">
                 <div class="card-body"></div>
-                <form>
-                    <div class="mb-3">
-                        <h4 class="text-dark text-muted">The Voice Contest</h4>
+                <div class="text-left">
+                    <button type="button" class="btn btn-back text-center" (click)="goHome()">Go back</button>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <h1 class="text-color">Start</h1>
+                        <h1 class="text-color">Contest</h1>
+                        <h3 class="text-danger">Are you ready?</h3>
+                    </div>
+                    <div class="mb-4">
                         <button type="button" class="btn btn-warning text-center" (click)="joinBattle()">Sing</button>
                         <button type="button" class="btn btn-warning text-center" (click)="goToVoterView()">Vote</button>
                     </div>
-                    
-                    
-                  </form>
             </div>
         </div>
         <div class="col"></div>

@@ -3,7 +3,7 @@ import { DataService } from '../_service/data.service';
 import { AuthService } from '../_service/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../model/user';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize, switchMap } from 'rxjs/operators';
 import { FileService } from '../_service/file.service';
@@ -22,7 +22,7 @@ export class UpdateComponentComponent {
     first_name: '',
     last_name: '',
     email: '',
-    music_styles: [],
+    music_style: [],
     profilePicture: '',
     isWaitingForBattle: false,
     isFound: false
@@ -33,7 +33,7 @@ export class UpdateComponentComponent {
   profilePictureControl: AbstractControl | null = null;
   selectedImagePreview: string | ArrayBuffer = '';
   filePath: any;
-
+  musicStylesArray: string[] = ["Rock", "Pop", "Hip Hop", "Jazz", "Country", "Electronic"];
   constructor(
     private authService: AuthService,
     private firestoreService: DataService,
@@ -46,13 +46,48 @@ export class UpdateComponentComponent {
     this.profileForm = this.fb.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
-      music_style: [''],
+      music_style: this.fb.array([]),
       profilePicture: [null]
     });
     const profilePictureControl = this.profileForm.get('profilePicture');
+    this.initializeMusicStylesCheckboxes();
   }
   
+  initializeMusicStylesCheckboxes() {
+    this.musicStylesArray.forEach((style) => {
+      const control = this.fb.control('');
+      this.musicStylesFormArray.push(control);
+    });
+  }
+  
+  // Getter for music_style FormArray
+  get musicStylesFormArray() {
+    return this.profileForm.get('music_style') as FormArray;
+  }
 
+  toggleMusicStyle(style: string): void {
+    const musicStyles = this.musicStylesFormArray;
+  
+    if (musicStyles) {
+      const index = musicStyles.value.indexOf(style);
+  
+      if (index !== -1) {
+        // Remove the style if it's already selected
+        musicStyles.removeAt(index);
+      } else {
+        // Add the style as a string
+        musicStyles.push(this.fb.control(style));
+      }
+    }
+  }
+  
+  isChecked(style: string): boolean {
+  const musicStyles = this.musicStylesFormArray;
+  return musicStyles && musicStyles.value.includes(style);
+}
+  
+  
+  
   getSelectedImagePreview(): Observable<string | ArrayBuffer> {
     return new Observable((observer: Observer<string | ArrayBuffer>) => {
       if (this.selectedImage instanceof File) {
@@ -127,8 +162,8 @@ export class UpdateComponentComponent {
           this.user.last_name = updatedProfile.last_name;
         }
   
-        if (updatedProfile.music_styles !== null && updatedProfile.music_styles !=='') {
-          this.user.music_styles = updatedProfile.music_styles;
+        if (updatedProfile.music_style !== null && updatedProfile.music_style !=='') {
+          this.user.music_style = updatedProfile.music_style;
         }
   
         if (updatedProfile.profilePicture !== null) {

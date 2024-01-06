@@ -12,6 +12,7 @@ import { UpdateComponentComponent } from './update-component/update-component.co
 import { FileComponent } from './file/file.component';
 import { VoterViewComponent } from './voter-view/voter-view.component';
 import { PlayerViewComponent } from './player-view/player-view.component';
+import { WinnerComponent } from './winner/winner.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path: 'update-component',component:UpdateComponentComponent},
   {path: 'file',component:FileComponent},
   {path: 'voter-view', component:VoterViewComponent},
-  {path: 'player-view', component:PlayerViewComponent}
+  {path: 'player-view', component:PlayerViewComponent},
+  {path: 'winner',component:WinnerComponent}
   
 ];
 

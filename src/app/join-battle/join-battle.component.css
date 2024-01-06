@@ -1,0 +1,77 @@
+
+.container {
+    margin-top: 50px;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 2rem;
+    text-align: left;
+  }
+
+.text-color{
+    color:#0e5ba8;
+    font-weight:bold;
+    font-size: 40px;
+    margin-top: 40px;
+    margin-bottom: 80px;
+    text-align: center;
+}
+.container-profile img {
+    max-width: 100%; /* Adjust the value based on your design */
+    border-radius: 10%;/* If you want rounded profile pictures */
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-profile,
+.container-wait-icon {
+    flex: 1;
+    text-align: center;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #ddd;
+    margin-right:50px;
+}
+
+.game-icon {
+    
+    width: 70px;
+    height: 70px;
+    margin-top: 40px;
+}
+
+.btn-primary {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 80px;
+    width: 150px;
+    font-weight: 500;
+    height:40px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
