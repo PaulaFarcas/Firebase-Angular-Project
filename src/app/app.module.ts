@@ -14,7 +14,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { HomeComponent } from './home/home.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 import { JoinBattleComponent } from './join-battle/join-battle.component';
 import { StartGameComponent } from './start-game/start-game.component';
 import { PlayerViewComponent } from './player-view/player-view.component';
@@ -41,7 +40,6 @@ import { VotersSpaceComponent } from './voters-space/voters-space.component';
     HomeComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    UserProfileComponent,
     JoinBattleComponent,
     StartGameComponent,
     PlayerViewComponent,
