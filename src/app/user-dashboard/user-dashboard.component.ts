@@ -26,7 +26,7 @@ export class UserDashboardComponent {
   first_name: string = '';
   last_name: string = '';
   email: string =''
-  music_style:string='';
+  music_style:string[]=[];
   profileForm: FormGroup;
  
   constructor(
