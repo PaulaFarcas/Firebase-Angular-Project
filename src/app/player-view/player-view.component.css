@@ -1,0 +1,56 @@
+/* Custom styling for the profile page */
+
+.container {
+    max-width: 800px;
+    margin-top: 50px;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 2rem;
+    text-align: left;
+  }
+
+  .text-color{
+    color:#0e5ba8;
+    font-weight:bold;
+    font-size: 60px;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.text-danger{
+    color:#ff3c00;
+    font-weight:600;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+    .btn-primary {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 80px;
+    width: 150px;
+    font-weight: 500;
+    height:40px;
+}
+
+  /* Additional styles for improved spacing and alignment */
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+
+  
