@@ -1,34 +1,30 @@
 <div class="container-fluid">
     <div class="row mt-5">
         <div class="col"></div>
-        
-        <div class="col-4">
+            <div class="col-4">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="container">
-                        <h1 class="text-color">Choosing Random Player</h1>
-                        
-                        <div class="row mt-4">
-                            <!-- User Profile -->
-                            <div class="col container-profile">
-                                <img *ngIf="current_player.profilePicture" [src]="current_player.profilePicture" alt="Your Profile Picture">
-                            </div>
-
-                            <!-- Waiting Icon -->
-                            <div class="col container-wait-icon text-center">
-                                <img class="game-icon" id="waiting-icon" src="../../assets/images/wait.png" alt="Wait icon">
-                            </div>
-
-                            <!-- Opponent Profile -->
-                            <div class="col container-profile">
-                                <img *ngIf="opponent.profilePicture" [src]="opponent.profilePicture" alt="Oponent's Profile Picture">
-                                <p [innerText]=""></p>
-                            </div>
+                   <h1 class="text-color">Choosing Random Player</h1>    
+                    <div class="row mt-4">
+                        <!-- User Profile -->
+                        <div class="col container-profile">
+                            <img class="profile-picture" *ngIf="current_player.profilePicture" [src]="current_player.profilePicture" alt="Your Profile Picture">
                         </div>
 
-                        <!-- Ready Button -->
-                        <button class="btn btn-primary" (click)="startBattle()">Ready!</button>
+                        <!-- Waiting Icon -->
+                        <div class="col container-wait-icon text-center">
+                            <img class="game-icon" id="waiting-icon" src="../../assets/images/wait.png" alt="Wait icon">
+                        </div>
+
+                        <!-- Opponent Profile -->
+                        <div class="col container-profile">
+                            <img class="profile-picture" *ngIf="opponent.profilePicture" [src]="opponent.profilePicture" alt="Oponent's Profile Picture">
+                            <p [innerText]=""></p>
+                        </div>
                     </div>
+
+                    <!-- Ready Button -->
+                    <button class="btn btn-primary" (click)="startBattle()">Ready!</button>
                 </div>
             </div>
         </div>
