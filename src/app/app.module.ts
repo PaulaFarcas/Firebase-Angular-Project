@@ -30,6 +30,8 @@ import { FileComponent } from './file/file.component';
 import { YoutubeSongViewComponent } from './youtube-song-view/youtube-song-view.component';
 import { PlayerSpaceComponent } from './player-space/player-space.component';
 import { VotersSpaceComponent } from './voters-space/voters-space.component';
+import { TimerService } from './_service/timer.service';
+import { WinnerComponent } from './winner/winner.component';
 
 
 
@@ -52,6 +54,7 @@ import { VotersSpaceComponent } from './voters-space/voters-space.component';
     YoutubeSongViewComponent,
     PlayerSpaceComponent,
     VotersSpaceComponent,
+    WinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,7 @@ import { VotersSpaceComponent } from './voters-space/voters-space.component';
     provideStorage(() => getStorage()),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [TimerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

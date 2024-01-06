@@ -24,7 +24,8 @@
     margin-bottom: 50px;
     text-align: center;
 }
-.text-danger{
+
+.timer-container{
     color:#ff3c00;
     font-weight:600;
     font-size: 30px;
