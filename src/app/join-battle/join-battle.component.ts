@@ -60,7 +60,7 @@
     findOpponent() {
       this.data.getAllUsers().subscribe((users) => {
         const waitingOpponent:User = <User>users.map(user => user.payload.doc.data())
-                                              .find((user:any) => user.isWaitingForBattle && !user.isFound);
+                                              .find((user:any) => user.isWaitingForBattle && !user.isFound && user!=this.current_player);
         if (waitingOpponent) {
           this.opponent = waitingOpponent;
           this.opponent.isFound=true;
@@ -75,10 +75,18 @@
       console.log('start Battle clicked');
 
       if(!this.current_player.isFound){
+        // this.current_player.isFound=true;
+        // this.data.updateUser(Object.assign({}, this.current_player));
         this.findOpponent();
         this.battleService.createBattle(this.current_player, this.opponent);
       }
-      this.router.navigate(['/player-view']);
+      if(this.opponent.id!=''){
+        this.current_player.isFound=false;
+        this.current_player.isWaitingForBattle=false;
+        this.data.updateUser(Object.assign({}, this.current_player));
+        this.router.navigate(['/player-view']);
+      }
+      else console.log('Could not find player');//this.waitingStatus="Could not find player";
     }    
   }
   
