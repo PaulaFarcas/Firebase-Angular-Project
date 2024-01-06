@@ -17,23 +17,34 @@ export class BattleService {
   }
 
   getAllBattles(): any{
-    return this.firestore.collection('battles').get();
+    return this.firestore.collection('battles').valueChanges();
   }
 
   getBattleHostingPlayer(player:User):Observable<Battle|null>{
-    return this.firestore.collection('battles', ref=>
-    ref.where('firstPlayer', '==', player)
-      .where('secondPlayer', '==', player))
+    const Battle1=this.firestore.collection('battles', ref=>
+    ref.where('firstPlayer', '==', player))
     .valueChanges().pipe(
       map((battles:any[])=>{
-        battles = battles.filter(doc => doc.id.includes(player.id));
+        //battles = battles.filter(doc => doc.id.includes(player.id));
         return battles[0];
-      }),
-      catchError(error => {
-        console.error('Error fetching battle, ', error);
-        return of(null);
       })
     )
+
+    const Battle2=this.firestore.collection('battles', ref=>
+    ref.where('secondPlayer', '==', player))
+    .valueChanges().pipe(
+      map((battles:any[])=>{
+        //battles = battles.filter(doc => doc.id.includes(player.id));
+        return battles[0];
+      })
+    )
+    
+    if(Battle1!=null) return Battle1;
+    else if(Battle2!=null) return Battle2;
+    else {
+      console.error('Could not find Battle');
+      return of(null);
+    }
   }
 
 }

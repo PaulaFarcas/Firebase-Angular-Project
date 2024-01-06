@@ -59,7 +59,8 @@
 
     findOpponent() {
       this.data.getAllUsers().subscribe((users) => {
-        const waitingOpponent:User = <User>users.map(user => user.payload.doc.data()).find((user:any) => user.isWaitingForBattle && !user.isFound);
+        const waitingOpponent:User = <User>users.map(user => user.payload.doc.data())
+                                              .find((user:any) => user.isWaitingForBattle && !user.isFound);
         if (waitingOpponent) {
           this.opponent = waitingOpponent;
           this.opponent.isFound=true;
