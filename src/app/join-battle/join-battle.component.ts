@@ -20,7 +20,7 @@
       music_styles: [],
       profilePicture: '',
       isWaitingForBattle: true,
-      isReady: false
+      isFound: false
     };
 
     opponent:User = {
@@ -31,7 +31,7 @@
       music_styles: [],
       profilePicture: '',
       isWaitingForBattle: true,
-      isReady: true
+      isFound: true
     };
 
     waitingStatus:string='If ready, click ready!';
@@ -44,6 +44,8 @@
           this.data.getUserProfile(user.uid).subscribe((profile:any)=>{
             if (profile) {
               this.current_player = profile;
+              this.current_player.isWaitingForBattle=true;
+              this.data.updateUser(Object.assign({}, this.current_player));
             }
             else{
               console.error('Error: something happened, could not find profile');
@@ -57,9 +59,11 @@
 
     findOpponent() {
       this.data.getAllUsers().subscribe((users) => {
-        const waitingOpponent:User = <User>users.map(user => user.payload.doc.data()).find((user:any) => user.isWaitingForBattle);
+        const waitingOpponent:User = <User>users.map(user => user.payload.doc.data()).find((user:any) => user.isWaitingForBattle && !user.isFound);
         if (waitingOpponent) {
           this.opponent = waitingOpponent;
+          this.opponent.isFound=true;
+          this.data.updateUser(Object.assign({}, this.opponent));
         } else {
           this.waitingStatus = 'No opponent waiting for battle';
         }
@@ -67,16 +71,13 @@
     }
 
     startBattle() {
-      console.log('start Battle clicked'); 
-      this.current_player.isReady=true;
-        this.data.updateUser(Object.assign({}, this.current_player));
-    
-        if (this.opponent.isReady) {
-          this.battleService.createBattle(this.current_player, this.opponent);
-          this.router.navigate(['/player-view']);
-        } else {
-          this.waitingStatus = 'Waiting for the other opponent';
-        }
+      console.log('start Battle clicked');
+
+      if(!this.current_player.isFound){
+        this.findOpponent();
+        this.battleService.createBattle(this.current_player, this.opponent);
+      }
+      this.router.navigate(['/player-view']);
     }    
   }
   

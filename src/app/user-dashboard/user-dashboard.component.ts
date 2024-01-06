@@ -20,7 +20,7 @@ export class UserDashboardComponent {
     music_styles:[],
     profilePicture:'',
     isWaitingForBattle: false,
-    isReady: false
+    isFound: false
   };
   id: string = '';
   first_name: string = '';

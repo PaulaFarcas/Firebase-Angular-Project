@@ -25,7 +25,7 @@ export class UpdateComponentComponent {
     music_styles: [],
     profilePicture: '',
     isWaitingForBattle: false,
-    isReady: false
+    isFound: false
   };
 
   profileForm: FormGroup;

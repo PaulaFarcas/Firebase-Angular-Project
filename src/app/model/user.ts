@@ -6,5 +6,5 @@ export interface User {
     music_styles:string [], //pop,rock,,, if 
     profilePicture: string;
     isWaitingForBattle:boolean;
-    isReady:boolean;
+    isFound:boolean;
 }
