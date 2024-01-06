@@ -18,10 +18,16 @@
               <label for="last_name" class="form-label">Last Name</label>
               <input type="text" class="form-control" id="last_name" formControlName="last_name">
             </div>
-            <div class="mb-3">
-              <label for="music_style" class="form-label">Music Style</label>
-              <input type="text" class="form-control" id="music_style" formControlName="music_style">
+      
+            <label>Music Styles:</label>
+            <div formArrayName="music_style">
+              <div *ngFor="let style of musicStylesArray; let i = index">
+                <input type="checkbox" [id]="style" [value]="style" (change)="toggleMusicStyle(style)" [checked]="isChecked(style)">
+                <label [for]="style">{{ style }}</label>
+              </div>
             </div>
+
+
             <div class="mb-3">
               <label for="profilePicture" class="form-label">Profile Picture</label>
               <input type="file" class="form-control" id="profilePicture" formControlName="profilePicture" (change)="handleImageChange($event)">

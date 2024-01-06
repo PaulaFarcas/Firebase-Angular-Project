@@ -17,7 +17,7 @@ export class JoinBattleComponent {
     first_name: '',
     last_name: '',
     email: '',
-    music_styles: [],
+    music_style: [],
     profilePicture: '',
     isWaitingForBattle: true,
     isReady: false
@@ -28,7 +28,7 @@ export class JoinBattleComponent {
     first_name: '',
     last_name: '',
     email: '',
-    music_styles: [],
+    music_style: [],
     profilePicture: '',
     isWaitingForBattle: true,
     isReady: false

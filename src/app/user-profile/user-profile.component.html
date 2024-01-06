@@ -19,7 +19,7 @@
                         <label for="email">Email address</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="music_style" class="form-control" id="music_style" name="music_style" [(ngModel)]="music_styles">
+                        <input type="music_style" class="form-control" id="music_style" name="music_style" [(ngModel)]="music_style">
                         <label for="music_style">Music style</label>
                     </div>
                    
@@ -45,7 +45,7 @@
                             <td>{{user.first_name}}</td>
                             <td>{{user.last_name}}</td>
                             <td>{{user.email}}</td>
-                            <td>{{user.music_styles}}</td>
+                            <td>{{user.music_style}}</td>
                             <td>
                                 <button class="btn btn-outline-danger" (click)="deleteUser(user)">Delete</button>
                             </td>

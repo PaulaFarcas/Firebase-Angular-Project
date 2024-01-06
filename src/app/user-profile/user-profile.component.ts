@@ -18,7 +18,7 @@ export class UserProfileComponent {
     first_name: '',
     last_name: '',
     email: '',
-    music_styles:[],
+    music_style:[],
     profilePicture: '',
     isWaitingForBattle:false,
     isReady: false
@@ -29,7 +29,7 @@ export class UserProfileComponent {
   first_name: string = '';
   last_name: string = '';
   email: string = '';
-  music_styles:string[]= [];
+  music_style:string[]= [];
 
   
   constructor(private auth: AuthService, private data: DataService,private router:Router) { }
@@ -67,7 +67,7 @@ export class UserProfileComponent {
     this.first_name = '';
     this.last_name = '';
     this.email = '';
-    this.music_styles=[];
+    this.music_style=[];
   }
 
   addUser() {
@@ -101,7 +101,7 @@ export class UserProfileComponent {
         this.userObj.email = this.email;
         this.userObj.first_name = this.first_name;
         this.userObj.last_name = this.last_name;
-        this.userObj.music_styles = this.music_styles;
+        this.userObj.music_style = this.music_style;
         this.data.addUser(this.userObj);
       }
 
