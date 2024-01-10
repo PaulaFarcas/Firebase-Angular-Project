@@ -13,7 +13,7 @@ export class Battle {
         this.firstPlayer=FirstPlayer;
         this.secondPlayer=SecondPlayer;
         this.id=FirstPlayer.id+SecondPlayer.id;
-        this.song=SongService.findSong(FirstPlayer.music_style, SecondPlayer.music_style);
+        this.song=Object.assign({},SongService.findSong(FirstPlayer.music_style, SecondPlayer.music_style));
     }
 
     addVoter(voter:User){

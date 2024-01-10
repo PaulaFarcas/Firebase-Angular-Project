@@ -8,7 +8,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize, switchMap } from 'rxjs/operators';
 import { FileService } from '../_service/file.service';
 import { FileMetaData } from '../model/FileMetaData';
-import { EMPTY, Observable, Observer, from, throwError } from 'rxjs';
+import { EMPTY, Observable, Observer, from, throwError, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-update-component',
@@ -16,6 +16,7 @@ import { EMPTY, Observable, Observer, from, throwError } from 'rxjs';
   styleUrls: ['./update-component.component.css']
 })
 export class UpdateComponentComponent {
+  private currentUserSubscription: Subscription | undefined;
 
   user: User = {
     id: '',
@@ -114,6 +115,7 @@ export class UpdateComponentComponent {
     // Load user data and set it in the form
     // ...
     console.log('Ng on init executed');
+    //this.currentUserSubscription=
     this.authService.getCurrentUser().subscribe((user: { uid: string; }) => {
       if (user) {
         console.log('Current user retrieved:', user);
@@ -132,6 +134,10 @@ export class UpdateComponentComponent {
       }
     });
 
+  }
+
+  ngOnDestroy(){
+    this.currentUserSubscription?.unsubscribe();
   }
 
   saveChanges(): void {

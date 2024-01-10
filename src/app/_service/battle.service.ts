@@ -13,7 +13,7 @@ export class BattleService {
 
   createBattle(FirstUser:User, SecondUser: User){
     let newBattle= new Battle(FirstUser, SecondUser);
-    this.firestore.collection('battles').add(newBattle);
+    this.firestore.collection('battles').add(Object.assign({}, newBattle));
   }
 
   getAllBattles(): any{

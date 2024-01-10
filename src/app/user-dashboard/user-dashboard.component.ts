@@ -4,6 +4,7 @@ import { AuthService } from '../_service/auth.service';
 import { User } from '../model/user';
 import { DataService } from '../_service/data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -11,6 +12,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./user-dashboard.component.css']
 })
 export class UserDashboardComponent {
+  private currentUserSubscription: Subscription | undefined;
+  private profileSubscription: Subscription | undefined;
 
   user: User = {
     id: '',
@@ -41,8 +44,10 @@ export class UserDashboardComponent {
 
   ngOnInit(): void {
     // Get the current user's profile from Firestore
+    this.currentUserSubscription=
     this.authService.getCurrentUser().subscribe((user: { uid: string; }) => {
       if (user) {
+        this.profileSubscription=
         this.firestoreService.getUserProfile(user.uid).subscribe((profile: any) => {
           if (profile) {
             // User profile exists, use it
@@ -56,6 +61,11 @@ export class UserDashboardComponent {
         });
       }
     });
+  }
+
+  ngOnDestroy(){
+    this.currentUserSubscription?.unsubscribe();
+    this.profileSubscription?.unsubscribe();
   }
   
   saveChanges(): void {

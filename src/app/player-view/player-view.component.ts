@@ -20,14 +20,13 @@ import { Router } from '@angular/router';
 export class PlayerViewComponent {
   songUrl:string='';
 
-  ratingPlayer1=5.4;
-  ratingPlayer2=7.8;
+  ratingPlayer1:number=0;
+  ratingPlayer2:number=0;
 
   constructor(dataService:DataService, battleService:BattleService, private timerService: TimerService,private router:Router){}
 
-  statePlaying=false;
-  stateVoting=false;
-  stateEnded=false;
+  stateVoting:boolean=false;
+
   timerValue: number = 0;
  
   uploadMusic(){}

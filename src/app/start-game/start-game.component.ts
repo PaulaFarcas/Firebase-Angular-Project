@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../_service/auth.service';
 import { DataService } from '../_service/data.service';
+import { EMPTY, Subscription, switchMap, tap } from 'rxjs';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-start-game',
@@ -10,26 +12,42 @@ import { DataService } from '../_service/data.service';
 })
 export class StartGameComponent {
 
+  private currentUserSubscription: Subscription | undefined;
 
   constructor(private router:Router, private auth:AuthService, private data:DataService){}
 
+  private currentUser:User|undefined;
+
   ngOnInit():void{
-    this.auth.getCurrentUser().subscribe((user: {uid:string}) => {
-      if (user) {
-        this.data.getUserProfile(user.uid).subscribe((profile:any)=>{
-          if (profile) {
-            profile.isFound=false;
-            profile.isWaitingForBattle=false;
-            this.data.updateUser(Object.assign({}, profile));
-          }
-          else{
-            console.error('Error: something happened, could not find profile');
-          }
-        })
-      } else {
-        console.error('Error: User or user.id is undefined');
+    this.currentUserSubscription=
+    this.auth.getCurrentUser().pipe(
+      switchMap((user: { uid: string }) => {
+        if (user) {
+          return this.data.getUserProfile(user.uid).pipe(
+            tap((profile: any) => {
+            if (profile) {
+              this.currentUser = profile;
+              console.log('set current user in start battle')
+            } else {
+              console.error("Could not fetch current user");
+            }
+          }));
+        }else{
+          return EMPTY;
+        }
+    }),
+    tap(()=>{
+      if(this.currentUser?.isFound || this.currentUser?.isWaitingForBattle) {
+        this.currentUser.isFound=false;
+        this.currentUser.isWaitingForBattle=false;
+        this.data.updateUser(Object.assign({}, this.currentUser));
       }
-    });
+    })
+    ).subscribe();
+  }
+ 
+  ngOnDestroy(){
+    this.currentUserSubscription?.unsubscribe();
   }
 
   goToVoterView(){
