@@ -119,7 +119,7 @@
             }
         }),
         tap(()=>{
-          if(!this.opponent.isFound){
+          if(!this.opponent.isFound && this.isOpponentSetCorrectly){
             this.opponent.isFound=true;
             this.data.updateUser(Object.assign({}, this.opponent));
             console.log('Updated opponent isFound=true');
