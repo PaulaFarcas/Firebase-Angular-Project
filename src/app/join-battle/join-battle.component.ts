@@ -17,7 +17,7 @@
     private isOpponentSetCorrectly:boolean=false;
     
     private currentUserSubscription: Subscription | undefined;
-    private allUsersSubscription: Subscription | undefined;
+    private opponentSubscription: Subscription | undefined;
 
     current_player:User = {
       id: '',
@@ -78,11 +78,11 @@
 
     ngOnDestroy(){
       this.currentUserSubscription?.unsubscribe();
-      this.allUsersSubscription?.unsubscribe();
+      this.opponentSubscription?.unsubscribe();
     }
 
     findOpponent() {
-      this.allUsersSubscription=
+      this.opponentSubscription=
       this.data.getAllUsers().valueChanges().pipe(
         tap((users)=>{
           this.opponentSetCount++;
@@ -95,7 +95,7 @@
           console.log(filteredUsers);
         }),
         switchMap((filteredUsers) => {
-            if(filteredUsers && filteredUsers.length>0){
+            if(filteredUsers && filteredUsers.length>0 && !this.isOpponentSetCorrectly){
               const waitingOpponent:User= filteredUsers[0];
               console.log(waitingOpponent, 'waiting opponent id: ', waitingOpponent.id);
               return this.data.getUserProfile(waitingOpponent.id).pipe(
@@ -119,6 +119,7 @@
             }
         }),
         tap(()=>{
+          console.log('is opponent set corr',this.isOpponentSetCorrectly);
           if(!this.opponent.isFound && this.isOpponentSetCorrectly){
             this.opponent.isFound=true;
             this.data.updateUser(Object.assign({}, this.opponent));
@@ -130,17 +131,14 @@
     }
 
     startBattle() {
-      if(!this.current_player.isFound){
-        this.findOpponent();
-        this.battleService.createBattle(this.current_player, this.opponent);
-      }
+      this.findOpponent();
+
       if(this.opponent.id!=''){
+        this.battleService.createBattle(this.current_player, this.opponent);
+        this.opponentSubscription?.unsubscribe();
         this.router.navigate(['/player-view']);
-        this.current_player.isFound=false;
-        this.current_player.isWaitingForBattle=false;
-        this.data.updateUser(Object.assign({}, this.current_player));
       } 
-      else console.log('Could not find player');
+      else console.log('Could not find opponent');
     }    
   }
   
