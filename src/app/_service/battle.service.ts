@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore} from '@angular/fire/compat/firestore';
 import { User } from '../model/user';
 import { Battle } from '../model/battle';
 import { Observable, map, switchMap, tap} from 'rxjs';
-import { doc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BattleService {
 
-  constructor(private firestore: AngularFirestore, private firestoreDocument: AngularFirestoreDocument) {}
+  constructor(private firestore: AngularFirestore) {}
 
   createBattle(FirstUser:User, SecondUser: User){
     let newBattle= new Battle(FirstUser, SecondUser);

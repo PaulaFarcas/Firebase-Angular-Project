@@ -10,12 +10,15 @@
                     <div class="row mt-4">
                         <div class="col-4">
                             <!-- Left section for player-1 -->
-                            <app-player-space id="player-1"></app-player-space>
+                            <!-- <app-player-space id="player-1"></app-player-space> -->
                         </div>
                         <div class="col-4">
                             <!-- Middle section for YouTube song view -->
                             <div class="container song-container">
-                                <app-youtube-song-view></app-youtube-song-view>
+                                <a [href]="songUrl">
+                                    <h3 class="song-title">{{ songTitle }}</h3>
+                                    <p class="artist-name">{{ songAuthor }}</p>
+                                </a>
                             </div>
                             <!-- Upload button -->
                             <button class="btn btn-primary mt-4">
@@ -24,7 +27,7 @@
                         </div>
                         <div class="col-4">
                             <!-- Right section for player-2 -->
-                            <app-player-space id="player-2"></app-player-space>
+                            <!-- <app-player-space id="player-2"></app-player-space> -->
                         </div>
                     </div>
                 </div>

@@ -131,13 +131,17 @@
     }
 
     startBattle() {
-      this.findOpponent();
+      if(!this.current_player.isFound){
+        this.findOpponent();
 
-      if(this.opponent.id!=''){
-        this.battleService.createBattle(this.current_player, this.opponent);
+        if(this.opponent.id!='' && this.isOpponentSetCorrectly){
+          this.battleService.createBattle(this.current_player, this.opponent);
+          this.router.navigate(['/player-view']);
+        } 
+        else console.log('Could not find opponent');
+      }else{
         this.router.navigate(['/player-view']);
-      } 
-      else console.log('Could not find opponent');
+      }
     }    
   }
   
