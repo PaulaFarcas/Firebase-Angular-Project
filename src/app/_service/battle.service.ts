@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { User } from '../model/user';
 import { Battle } from '../model/battle';
-import { Observable, catchError, map, of, startWith} from 'rxjs';
+import { Observable, map, switchMap, tap} from 'rxjs';
+import { doc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BattleService {
 
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private firestore: AngularFirestore, private firestoreDocument: AngularFirestoreDocument) {}
 
   createBattle(FirstUser:User, SecondUser: User){
     let newBattle= new Battle(FirstUser, SecondUser);
@@ -20,31 +21,28 @@ export class BattleService {
     return this.firestore.collection('battles').valueChanges();
   }
 
-  getBattleHostingPlayer(player:User):Observable<Battle|null>{
-    const Battle1=this.firestore.collection('battles', ref=>
-    ref.where('firstPlayer', '==', player))
-    .valueChanges().pipe(
-      map((battles:any[])=>{
-        //battles = battles.filter(doc => doc.id.includes(player.id));
-        return battles[0];
+  getBattleHostingPlayer(player:User):Observable<any>{
+    return this.firestore.collection('battles').valueChanges().pipe(
+      map((battles:any[])=> battles.filter(battle=> battle.FirstPlayer.id==player.id || battle.SecondPlayer.id==player.id)),
+      switchMap(filteredBattles=>{
+        if(filteredBattles && filteredBattles.length>0){
+          return filteredBattles[0];
+        }
       })
-    )
+    );
+  }
 
-    const Battle2=this.firestore.collection('battles', ref=>
-    ref.where('secondPlayer', '==', player))
-    .valueChanges().pipe(
-      map((battles:any[])=>{
-        //battles = battles.filter(doc => doc.id.includes(player.id));
-        return battles[0];
+  deleteBattleHostingPlayer(player:User){
+    this.firestore.collection('battles').valueChanges().pipe(
+      map((battles:any[])=> battles.filter(battle=> battle.FirstPlayer.id==player.id || battle.SecondPlayer.id==player.id)),
+      tap((filteredBattles:any[])=>{
+        if(filteredBattles && filteredBattles.length>0){
+          filteredBattles.forEach(battle => {
+            this.firestore.collection('battle').doc(battle.id).delete();
+          });
+        }
       })
-    )
-    
-    if(Battle1!=null) return Battle1;
-    else if(Battle2!=null) return Battle2;
-    else {
-      console.error('Could not find Battle');
-      return of(null);
-    }
+    );
   }
 
 }

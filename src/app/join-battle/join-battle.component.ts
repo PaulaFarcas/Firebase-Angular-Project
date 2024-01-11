@@ -135,7 +135,6 @@
 
       if(this.opponent.id!=''){
         this.battleService.createBattle(this.current_player, this.opponent);
-        this.opponentSubscription?.unsubscribe();
         this.router.navigate(['/player-view']);
       } 
       else console.log('Could not find opponent');
