@@ -15,7 +15,7 @@ export class DataService {
   }
 
   getAllUsers() {
-    return this.afs.collection('users').snapshotChanges();
+    return this.afs.collection('users');
   }
 
   deleteUser(user : User) {

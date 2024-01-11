@@ -54,9 +54,7 @@ export class UserDashboardComponent {
             this.user = profile;
           } else {
             // User profile doesn't exist, create a new one only if the user is not already on the user-dashboard page
-            if (!this.router.url.includes('/user-dashboard')) {
               this.saveChanges();
-            }
           }
         });
       }

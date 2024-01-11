@@ -4,7 +4,7 @@
   import { DataService } from '../_service/data.service';
   import { Router } from '@angular/router';
   import { BattleService } from '../_service/battle.service';
-  import { Subscription, switchMap, tap, EMPTY } from 'rxjs';
+  import { Subscription, switchMap, tap, EMPTY, filter, map } from 'rxjs';
 
   @Component({
     selector: 'app-join-battle',
@@ -12,6 +12,9 @@
     styleUrls: ['./join-battle.component.css']
   })
   export class JoinBattleComponent {
+
+    private opponentSetCount:number=0;
+    private isOpponentSetCorrectly:boolean=false;
     
     private currentUserSubscription: Subscription | undefined;
     private allUsersSubscription: Subscription | undefined;
@@ -80,23 +83,53 @@
 
     findOpponent() {
       this.allUsersSubscription=
-      this.data.getAllUsers().subscribe((users) => {
-        const waitingOpponent:User = <User>users.map(user => user.payload.doc.data())
-                                              .find((user:any) => user.isWaitingForBattle && !user.isFound && user.id!=this.current_player.id);
-        if (waitingOpponent) {
-          this.opponent = waitingOpponent;
-        } else {
-          this.waitingStatus = 'No opponent waiting for battle';
-        }
-      });
+      this.data.getAllUsers().valueChanges().pipe(
+        tap((users)=>{
+          this.opponentSetCount++;
+          console.log('before filter', this.opponentSetCount);
+          console.log(users);
+        }),
+        map((users:any[])=> users.filter(user => user.isWaitingForBattle && !user.isFound)),
+        tap((filteredUsers)=>{
+          console.log('after filter');
+          console.log(filteredUsers);
+        }),
+        switchMap((filteredUsers) => {
+            if(filteredUsers && filteredUsers.length>0){
+              const waitingOpponent:User= filteredUsers[0];
+              console.log(waitingOpponent, 'waiting opponent id: ', waitingOpponent.id);
+              return this.data.getUserProfile(waitingOpponent.id).pipe(
+                tap((profile:any) =>{
+                    if(profile){
+                      this.opponent=profile;
+                      console.log('set opponent in join battle');
+                      if(this.opponent.id!=this.current_player.id){
+                        this.isOpponentSetCorrectly=true;
+                      }
+                    }
+                    else{
+                      console.log('Could not fetch opponent profile');
+                    }
+                })
+              );
+            }
+            else{
+              console.error('Could not fetch users list');
+              return EMPTY;
+            }
+        }),
+        tap(()=>{
+          if(!this.opponent.isFound){
+            this.opponent.isFound=true;
+            this.data.updateUser(Object.assign({}, this.opponent));
+            console.log('Updated opponent isFound=true');
+          }
+        })
+      ).subscribe();
       
-      this.opponent.isFound=true;
-      this.data.updateUser(Object.assign({}, this.opponent));
     }
 
     startBattle() {
-      console.log('start Battle clicked');
-
       if(!this.current_player.isFound){
         this.findOpponent();
         this.battleService.createBattle(this.current_player, this.opponent);
